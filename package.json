@@ -1,0 +1,14 @@
+{
+  "name": "myproject",
+  "version": "1.0.0",
+  "description": "test program to check if mongo can run",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kaya",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^2.2.10"
+  }
+}
