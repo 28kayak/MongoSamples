@@ -1,0 +1,13 @@
+When insertDocument Function is called:
+the result contains like below:
+=============================================================================================
+{ result: { ok: 1, n: 3 },
+  ops:
+   [ { a: 1, _id: 5802b6e12a7d01885689f295 },
+     { a: 2, _id: 5802b6e12a7d01885689f296 },
+     { a: 3, _id: 5802b6e12a7d01885689f297 } ],
+  insertedCount: 3,
+  insertedIds:
+   [ 5802b6e12a7d01885689f295,
+     5802b6e12a7d01885689f296,
+     5802b6e12a7d01885689f297 ] }

@@ -1,0 +1,40 @@
+in the directory RUN:
+$mongod --dbpath=/data
+
+start up demon mongo
+gives you====================================================================================================================================================================================================================================
+
+2016-10-15T15:41:47.614-0700 I CONTROL  [initandlisten] MongoDB starting : pid=19721 port=27017 dbpath=/data 64-bit host=Kayas-MacBook-Pro-9.local
+2016-10-15T15:41:47.615-0700 I CONTROL  [initandlisten] db version v3.2.7
+2016-10-15T15:41:47.615-0700 I CONTROL  [initandlisten] git version: 4249c1d2b5999ebbf1fdf3bc0e0e3b3ff5c0aaf2
+2016-10-15T15:41:47.615-0700 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.2h  3 May 2016
+2016-10-15T15:41:47.615-0700 I CONTROL  [initandlisten] allocator: system
+2016-10-15T15:41:47.615-0700 I CONTROL  [initandlisten] modules: none
+2016-10-15T15:41:47.615-0700 I CONTROL  [initandlisten] build environment:
+2016-10-15T15:41:47.615-0700 I CONTROL  [initandlisten]     distarch: x86_64
+2016-10-15T15:41:47.615-0700 I CONTROL  [initandlisten]     target_arch: x86_64
+2016-10-15T15:41:47.615-0700 I CONTROL  [initandlisten] options: { storage: { dbPath: "/data" } }
+2016-10-15T15:41:47.617-0700 I -        [initandlisten] Detected data files in /data created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+2016-10-15T15:41:47.618-0700 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=4G,session_max=20000,eviction=(threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),checkpoint=(wait=60,log_size=2GB),statistics_log=(wait=0),
+2016-10-15T15:41:49.437-0700 I NETWORK  [HostnameCanonicalizationWorker] Starting hostname canonicalization worker
+2016-10-15T15:41:49.437-0700 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/data/diagnostic.data'
+2016-10-15T15:41:49.465-0700 I NETWORK  [initandlisten] waiting for connections on port 27017
+
+When accessing to port 27017 from app.js===========================================================================================================================================================================
+2016-10-15T15:47:34.519-0700 I NETWORK  [initandlisten] connection accepted from 127.0.0.1:65096 #1 (1 connection now open)
+2016-10-15T15:47:34.582-0700 I NETWORK  [conn1] end connection 127.0.0.1:65096 (0 connections now open)
+
+Without starting up demon mongo error should shows like below======================================================================================================================================================
+
+/mongoDBTest1/myproject/node_modules/mongodb/lib/mongo_client.js:225
+          throw err
+          ^
+AssertionError: null == { [MongoError: failed to connect to server [localhost:27017] on first connect]
+  name: 'MongoError',
+  message: 'failed to conne
+    at /Users/kaya/WebstormProjects/mongoDBTest1/myproject/app.js:10:12
+    at connectCallback (/Users/kaya/WebstormProjects/mongoDBTest1/myproject/node_modules/mongodb/lib/mongo_client.js:315:5)
+    at /Users/kaya/WebstormProjects/mongoDBTest1/myproject/node_modules/mongodb/lib/mongo_client.js:222:11
+    at nextTickCallbackWith0Args (node.js:420:9)
+    at process._tickCallback (node.js:349:13)
+
