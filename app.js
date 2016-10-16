@@ -11,8 +11,14 @@ MongoClient.connect(url, function(err, db){
     console.log("Connected successfully to server");
 
     //call insert document function:
-    insertDocuments(db, function () {
-        db.close();
+    insertDocuments(db, function (){
+        findDocQueryFileter(db,function () {
+          db.close();
+        });//end of findDocQueryFilter();
+        //findDocuments(db, function(){
+          //db.close();
+        //});//end of find Document function
+        //db.close();
     });//end of insertDucments function
     //db.close();
     //Result is out of scope
@@ -26,17 +32,21 @@ MongoClient.connect(url, function(err, db){
 * connection contains the connection used to perform the insert
 * */
 var insertDocuments = function (db, callback) {
+    //console.log("print DB");
+    //console.log(db);
     //Get the documents collection
     var collection = db.collection('documents');
     console.log("Collection:")
     console.log(collection);
+    //create documents JSON
+    var insertedData = [{driver :"kaya"}, {driver :"turu"}, {driver : "aaa"}];
     //Insert some documents
-    collection.insertMany([{a:1}, {a:2}, {a:3}], function (err, result) {
+    collection.insertMany(insertedData, function (err, result) {
         assert.equal(null, err);
         assert.equal(3, result.result.n);
         assert.equal(3, result.ops.length);
         console.log("Inserted 3 documents into the collection\n console output(result)");
-        console.log(result);
+       /* console.log(result);
         console.log("show result.result");
         console.log(result.result);
         console.log("show result.result.ok");
@@ -47,7 +57,7 @@ var insertDocuments = function (db, callback) {
 
         console.log("inserted IDs");
         console.log(result.insertedIds);
-        
+        */
         //console.log("result.ops.a");
         //console.log(result.ops.a);//==> undefined
         //console.log("result.ops._id");
@@ -57,6 +67,33 @@ var insertDocuments = function (db, callback) {
         } //function(err, reuslt)
     );//insert many
 
-    
-    
+}//inset Documents
+
+//find all documents
+//add a query that returns all the documents
+var findDocuments = function(db, callback) {
+    //get the document collection
+    var collection = db.collection('documents');
+    //find some documents
+    collection.find({}).toArray(function (err, docs) {
+        assert.equal(err, null);
+        console.log("Found the following records");
+        console.log(docs);
+        callback(docs);
+
+    });//end of collection.find
+
+}//find document without query filter
+var findDocQueryFileter = function (db, callback) {
+    //get the documents collection
+    var collection = db.collection('documents');
+    //find some doc
+
+    collection.find({'driver':'kaya'}).toArray(function(err, docs){
+        assert.equal(err, null);
+        console.log("Found the following records");
+        console.log(docs);
+        callback(docs);
+    });//should return all records such that field = a and value = 3
+
 }

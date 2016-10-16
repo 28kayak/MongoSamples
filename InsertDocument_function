@@ -11,3 +11,6 @@ the result contains like below:
    [ 5802b6e12a7d01885689f295,
      5802b6e12a7d01885689f296,
      5802b6e12a7d01885689f297 ] }
+====================================================================
+as much as calling insert function, more and more increase record.
+No duplicate since _id is unique for each invocation.
